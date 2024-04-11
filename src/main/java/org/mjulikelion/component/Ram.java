@@ -1,12 +1,16 @@
 package org.mjulikelion.component;
 
-public class Ram extends Component implements OnOff{
+import org.mjulikelion.component.company.RamCompany;
+
+public class Ram extends ComponentPart {
 
     private int capacity;
+    private RamCompany company;
 
-    public Ram(String name, int price, String company, int capacity) {
-        super(name, price, company);
+    public Ram(String name, int price, RamCompany company, int capacity) {
+        super(name, price);
         this.capacity = capacity;
+        this.company = company;
     }
 
     public void readData(){

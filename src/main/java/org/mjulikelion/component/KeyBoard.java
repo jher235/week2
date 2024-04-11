@@ -1,13 +1,16 @@
 package org.mjulikelion.component;
 
+import org.mjulikelion.component.company.KeyboardAndMouseCompany;
 import org.mjulikelion.component.type.KeyBoardType;
 
-public class KeyBoard extends Component implements OnOff{
+public class KeyBoard extends ComponentPart  {
     private KeyBoardType type;
 
-    public KeyBoard(String name, int price, String company, KeyBoardType type) {
-        super(name, price, company);
+    private KeyboardAndMouseCompany company;
+    public KeyBoard(String name, int price, KeyboardAndMouseCompany company, KeyBoardType type) {
+        super(name, price);
         this.type = type;
+        this.company = company;
     }
 
     public void type(){

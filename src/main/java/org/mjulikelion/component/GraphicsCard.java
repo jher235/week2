@@ -1,15 +1,18 @@
 package org.mjulikelion.component;
 
 
+import org.mjulikelion.component.company.GrapichsCardCompany;
 import org.mjulikelion.component.type.GraphicsCardType;
 
-public class GraphicsCard extends Component implements OnOff{
+public class GraphicsCard extends ComponentPart {
 
     private GraphicsCardType type;
 
-    public GraphicsCard(String name, int price, String company, GraphicsCardType type) {
-        super(name, price, company);
+    private GrapichsCardCompany company;
+    public GraphicsCard(String name, int price, GrapichsCardCompany company, GraphicsCardType type) {
+        super(name, price);
         this.type = type;
+        this.company = company;
     }
 
     public void render(){

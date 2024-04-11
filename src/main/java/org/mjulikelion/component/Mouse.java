@@ -1,9 +1,14 @@
 package org.mjulikelion.component;
 
-public class Mouse extends Component implements OnOff{
+import org.mjulikelion.component.company.KeyboardAndMouseCompany;
 
-    public Mouse(String name, int price, String company) {
-        super(name, price, company);
+public class Mouse extends ComponentPart {
+
+    private KeyboardAndMouseCompany company;
+
+    public Mouse(String name, int price, KeyboardAndMouseCompany company) {
+        super(name, price);
+        this.company = company;
     }
 
     public void click(){

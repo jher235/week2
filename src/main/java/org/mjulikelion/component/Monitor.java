@@ -1,11 +1,16 @@
 package org.mjulikelion.component;
 
-public class Monitor extends Component implements OnOff{
+import org.mjulikelion.component.company.MonitorCompany;
+
+public class Monitor extends ComponentPart {
     private int size;
 
-    public Monitor(String name, int price, String company) {
-        super(name, price, company);
+    private MonitorCompany company;
+
+    public Monitor(String name, int price, MonitorCompany company) {
+        super(name, price);
         this.size = size;
+        this.company = company;
     }
 
     public void display(){

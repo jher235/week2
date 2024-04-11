@@ -1,6 +1,6 @@
 package org.mjulikelion.component;
 
-public interface OnOff {
+public interface Switchable {
     void on();
     void off();
 }

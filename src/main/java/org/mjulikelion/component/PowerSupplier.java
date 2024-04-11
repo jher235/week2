@@ -1,12 +1,16 @@
 package org.mjulikelion.component;
 
-public class PowerSupplier extends Component implements OnOff {
+import org.mjulikelion.component.company.CoolerAndPowerCompany;
+
+public class PowerSupplier extends ComponentPart {
 
     private int power;
+    private CoolerAndPowerCompany company;
 
-    public PowerSupplier(String name, int price, String company, int power) {
-        super(name,price,company);
+    public PowerSupplier(String name, int price, CoolerAndPowerCompany company, int power) {
+        super(name,price);
         this.power = power;
+        this.company = company;
     }
 
     public void supplyPower(){

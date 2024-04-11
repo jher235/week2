@@ -2,15 +2,23 @@ package org.mjulikelion;
 
 import org.mjulikelion.component.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class Computer {
-    Cpu cpu;
-    Ram ram;
-    GraphicsCard graphicsCard;
-    PowerSupplier powerSupplier;
-    Cooler cooler;
-    Mouse mouse;
-    KeyBoard keyBoard;
-    Monitor monitor;
+    private Cpu cpu;
+    private Ram ram;
+    private GraphicsCard graphicsCard;
+    private PowerSupplier powerSupplier;
+    private Cooler cooler;
+    private Mouse mouse;
+    private KeyBoard keyBoard;
+    private Monitor monitor;
+
+
+
 
     //생성자를 설정할 때 필수적인 요소들은 전부 넣도록 작성
     public Computer(Cpu cpu, Ram ram, GraphicsCard graphicsCard, PowerSupplier powerSupplier, Cooler cooler) {
@@ -86,29 +94,37 @@ public class Computer {
 
     public void boot(){
         System.out.println("컴퓨터 부팅합니다.");
-        cpu.on();
-        ram.on();
-        graphicsCard.on();
-        powerSupplier.on();
-        cooler.on();
-        if(mouse!=null) mouse.on();
-        if(keyBoard!=null) keyBoard.on();
-        if(monitor!=null) monitor.on();
+
+        List<ComponentPart> primaryCoponentPars = new ArrayList<>(Arrays.asList(cpu, ram, graphicsCard, powerSupplier, cooler));
+
+        primaryCoponentPars.stream().forEach(i->i.on());
+
+
+        List<ComponentPart> subComponentParts = new ArrayList<ComponentPart>(Arrays.asList(mouse, keyBoard, monitor)) ;
+
+        subComponentParts = checkSubComponentPart(subComponentParts);
+
+        subComponentParts.stream().forEach(i->i.on());
+
+//        if(mouse!=null) mouse.on();
+//        if(keyBoard!=null) keyBoard.on();
+//        if(monitor!=null) monitor.on();
     }
 
-    public void shutdown(){
+    public void shutDown(){
 
         System.out.println("컴퓨터 종료합니다.");
 
-        off(cpu);
-        off(ram);
-        off(graphicsCard);
-        off(powerSupplier);
-        off(cooler);
+        List<ComponentPart> primaryCoponentPars = new ArrayList<>(Arrays.asList(cpu, ram, graphicsCard, powerSupplier, cooler));
 
-        if(mouse!=null) off(mouse);
-        if(keyBoard!=null) off(keyBoard);
-        if(monitor!=null) off(monitor);
+        primaryCoponentPars.stream().forEach(i->i.off());
+
+
+        List<ComponentPart> subComponentParts = new ArrayList<ComponentPart>(Arrays.asList(mouse, keyBoard, monitor)) ;
+
+        subComponentParts = checkSubComponentPart(subComponentParts);
+
+        subComponentParts.stream().forEach(i->off(i));
 
 //        cpu.off();
 //        ram.off();
@@ -121,8 +137,8 @@ public class Computer {
     }
 
     //인터페이스를 통한 다형성 이용... 살짝 억지지만 다형성을 적용하기 위해 추가
-    private void off(OnOff onOff){
-        onOff.off();
+    private void off(Switchable aSwitch){
+        aSwitch.off();
     }
 
     public void run(){
@@ -132,9 +148,19 @@ public class Computer {
         graphicsCard.render();
         powerSupplier.supplyPower();
         cooler.cool();
+
+
         if(mouse!=null) mouse.click();
         if(keyBoard!=null) keyBoard.type();
         if(monitor!=null) monitor.display();
+    }
+
+    public List checkSubComponentPart(List<ComponentPart> subComponentParts){
+//        ComponentPart[] existComponentParts = new ComponentPart[subComponentParts.length];
+
+        List<ComponentPart> existComponentParts = subComponentParts.stream().filter(i->i!=null).collect(Collectors.toList());
+
+        return existComponentParts;
     }
 
 

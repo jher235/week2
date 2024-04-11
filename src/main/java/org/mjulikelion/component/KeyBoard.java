@@ -1,16 +1,15 @@
 package org.mjulikelion.component;
 
-import org.mjulikelion.component.company.KeyboardAndMouseCompany;
+import org.mjulikelion.component.company.Company;
 import org.mjulikelion.component.type.KeyBoardType;
 
 public class KeyBoard extends ComponentPart  {
     private KeyBoardType type;
 
-    private KeyboardAndMouseCompany company;
-    public KeyBoard(String name, int price, KeyboardAndMouseCompany company, KeyBoardType type) {
-        super(name, price);
+
+    public KeyBoard(String name, int price, Company company, KeyBoardType type) {
+        super(name, price, company);
         this.type = type;
-        this.company = company;
     }
 
     public void type(){

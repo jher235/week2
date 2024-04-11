@@ -1,17 +1,15 @@
 package org.mjulikelion.component;
 
 
-import org.mjulikelion.component.company.CoolerAndPowerCompany;
+import org.mjulikelion.component.company.Company;
 import org.mjulikelion.component.type.CoolerType;
 
 public class Cooler extends ComponentPart {
     private CoolerType type;
-    private CoolerAndPowerCompany company;
 
-    public Cooler(String name, int price, CoolerAndPowerCompany company, CoolerType type) {
-        super(name,price);
+    public Cooler(String name, int price, Company company, CoolerType type) {
+        super(name,price,company);
         this.type = type;
-        this.company = company;
     }
 
     public void cool(){

@@ -1,16 +1,15 @@
 package org.mjulikelion.component;
 
-import org.mjulikelion.component.company.MonitorCompany;
+import org.mjulikelion.component.company.Company;
 
 public class Monitor extends ComponentPart {
     private int size;
 
-    private MonitorCompany company;
 
-    public Monitor(String name, int price, MonitorCompany company) {
-        super(name, price);
+
+    public Monitor(String name, int price, Company company) {
+        super(name, price, company);
         this.size = size;
-        this.company = company;
     }
 
     public void display(){

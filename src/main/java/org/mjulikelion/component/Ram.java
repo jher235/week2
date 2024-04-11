@@ -1,18 +1,15 @@
 package org.mjulikelion.component;
 
-import org.mjulikelion.component.company.RamCompany;
+import org.mjulikelion.component.company.Company;
 
 public class Ram extends ComponentPart {
 
     private int capacity;
-    private RamCompany company;
 
-    public Ram(String name, int price, RamCompany company, int capacity) {
-        super(name, price);
+    public Ram(String name, int price, Company company, int capacity) {
+        super(name, price, company);
         this.capacity = capacity;
-        this.company = company;
     }
-
     public void readData(){
         System.out.println(super.getName()+ " 데이터를 읽습니다.");
     }

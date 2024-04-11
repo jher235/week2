@@ -1,18 +1,16 @@
 package org.mjulikelion.component;
 
 
-import org.mjulikelion.component.company.GrapichsCardCompany;
+import org.mjulikelion.component.company.Company;
 import org.mjulikelion.component.type.GraphicsCardType;
 
 public class GraphicsCard extends ComponentPart {
 
     private GraphicsCardType type;
 
-    private GrapichsCardCompany company;
-    public GraphicsCard(String name, int price, GrapichsCardCompany company, GraphicsCardType type) {
-        super(name, price);
+    public GraphicsCard(String name, int price, Company company, GraphicsCardType type) {
+        super(name, price, company);
         this.type = type;
-        this.company = company;
     }
 
     public void render(){

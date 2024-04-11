@@ -4,6 +4,7 @@ import org.mjulikelion.component.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,6 +18,9 @@ public class Computer {
     private KeyBoard keyBoard;
     private Monitor monitor;
 
+    private List<ComponentPart> primaryParts;
+
+    private List<ComponentPart> subParts;
 
 
 
@@ -27,6 +31,7 @@ public class Computer {
         this.graphicsCard = graphicsCard;
         this.powerSupplier = powerSupplier;
         this.cooler = cooler;
+        this.primaryParts = new ArrayList<>(Arrays.asList(cpu,ram,graphicsCard,powerSupplier,cooler));
     }
 
     //Builder패턴을 위한 ComputerBuilder
@@ -83,9 +88,12 @@ public class Computer {
 
         public Computer build(){
             Computer computer = new Computer(cpu,ram,graphicsCard,powerSupplier,cooler); //생성자를 통해 필수 요소들은 한번에 처리 -> 필수요소 누락 시 오류 발생
-            computer.mouse = this.mouse;
-            computer.keyBoard = this.keyBoard;
-            computer.monitor = this.monitor;
+
+            computer.subParts = new LinkedList<>(); // 처음 크기 지정을 못해주니까 LinkedList 사용
+            if (this.mouse!=null) computer.subParts.add(this.mouse);
+            if (this.keyBoard!=null) computer.subParts.add(this.keyBoard);
+            if (this.monitor != null) computer.subParts.add(this.monitor);
+
 
             return computer;
         }
@@ -95,51 +103,22 @@ public class Computer {
     public void boot(){
         System.out.println("컴퓨터 부팅합니다.");
 
-        List<ComponentPart> primaryCoponentPars = new ArrayList<>(Arrays.asList(cpu, ram, graphicsCard, powerSupplier, cooler));
+        primaryParts.stream().forEach(i->i.on());
 
-        primaryCoponentPars.stream().forEach(i->i.on());
+        subParts.stream().forEach(i->i.on());
 
-
-        List<ComponentPart> subComponentParts = new ArrayList<ComponentPart>(Arrays.asList(mouse, keyBoard, monitor)) ;
-
-        subComponentParts = checkSubComponentPart(subComponentParts);
-
-        subComponentParts.stream().forEach(i->i.on());
-
-//        if(mouse!=null) mouse.on();
-//        if(keyBoard!=null) keyBoard.on();
-//        if(monitor!=null) monitor.on();
     }
 
     public void shutDown(){
 
         System.out.println("컴퓨터 종료합니다.");
 
-        List<ComponentPart> primaryCoponentPars = new ArrayList<>(Arrays.asList(cpu, ram, graphicsCard, powerSupplier, cooler));
+        primaryParts.stream().forEach(i->i.off());
 
-        primaryCoponentPars.stream().forEach(i->i.off());
+        subParts.stream().forEach(i->i.off());
 
-
-        List<ComponentPart> subComponentParts = new ArrayList<ComponentPart>(Arrays.asList(mouse, keyBoard, monitor)) ;
-
-        subComponentParts = checkSubComponentPart(subComponentParts);
-
-        subComponentParts.stream().forEach(i->off(i));
-
-//        cpu.off();
-//        ram.off();
-//        graphicsCard.off();
-//        powerSupplier.off();
-//        cooler.off();
-//        if(mouse!=null) mouse.off();
-//        if(keyBoard!=null) keyBoard.off();
-//        if(monitor!=null) monitor.off();
     }
 
-    //인터페이스를 통한 다형성 이용... 살짝 억지지만 다형성을 적용하기 위해 추가
-    private void off(Switchable aSwitch){
-        aSwitch.off();
-    }
 
     public void run(){
         System.out.println("컴퓨터의 기능을 전부 실행합니다.");
@@ -155,13 +134,6 @@ public class Computer {
         if(monitor!=null) monitor.display();
     }
 
-    public List checkSubComponentPart(List<ComponentPart> subComponentParts){
-//        ComponentPart[] existComponentParts = new ComponentPart[subComponentParts.length];
-
-        List<ComponentPart> existComponentParts = subComponentParts.stream().filter(i->i!=null).collect(Collectors.toList());
-
-        return existComponentParts;
-    }
 
 
 }

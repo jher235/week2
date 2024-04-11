@@ -1,14 +1,13 @@
 package org.mjulikelion.component;
 
-import org.mjulikelion.component.company.KeyboardAndMouseCompany;
+import org.mjulikelion.component.company.Company;
 
 public class Mouse extends ComponentPart {
 
-    private KeyboardAndMouseCompany company;
 
-    public Mouse(String name, int price, KeyboardAndMouseCompany company) {
-        super(name, price);
-        this.company = company;
+    public Mouse(String name, int price, Company company) {
+        super(name, price, company);
+
     }
 
     public void click(){

@@ -1,19 +1,18 @@
 package org.mjulikelion.component;
 
 
-import org.mjulikelion.component.company.CpuCompany;
+import org.mjulikelion.component.company.Company;
 import org.mjulikelion.component.type.CpuType;
 
 public class Cpu extends ComponentPart {
     private int speed;
     private CpuType type;
-    private CpuCompany company;
 
-    public Cpu(String name, int price, CpuCompany company, int speed, CpuType type) {
-        super(name, price);
+    public Cpu(String name, int price, Company company, int speed, CpuType type) {
+        super(name, price, company);
         this.speed = speed;
         this.type = type;
-        this.company = company;
+
     }
 
 

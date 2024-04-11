@@ -1,16 +1,14 @@
 package org.mjulikelion.component;
 
-import org.mjulikelion.component.company.CoolerAndPowerCompany;
+import org.mjulikelion.component.company.Company;
 
 public class PowerSupplier extends ComponentPart {
 
     private int power;
-    private CoolerAndPowerCompany company;
 
-    public PowerSupplier(String name, int price, CoolerAndPowerCompany company, int power) {
-        super(name,price);
+    public PowerSupplier(String name, int price, Company company, int power) {
+        super(name,price, company);
         this.power = power;
-        this.company = company;
     }
 
     public void supplyPower(){

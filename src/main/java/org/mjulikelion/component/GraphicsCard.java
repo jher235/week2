@@ -13,7 +13,8 @@ public class GraphicsCard extends ComponentPart {
         this.type = type;
     }
 
-    public void render(){
+    @Override
+    public void run() {
         System.out.println(super.getName()+" 화면을 렌더링합니다.");
     }
 

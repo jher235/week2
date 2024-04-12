@@ -10,7 +10,8 @@ public class Mouse extends ComponentPart {
 
     }
 
-    public void click(){
+    @Override
+    public void run() {
         System.out.println(super.getName()+" 클릭합니다.");
     }
 

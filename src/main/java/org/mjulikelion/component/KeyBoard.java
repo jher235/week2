@@ -12,7 +12,8 @@ public class KeyBoard extends ComponentPart  {
         this.type = type;
     }
 
-    public void type(){
+    @Override
+    public void run() {
         System.out.println(super.getName()+" 타이핑합니다.");
     }
 

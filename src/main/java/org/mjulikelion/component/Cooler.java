@@ -12,7 +12,9 @@ public class Cooler extends ComponentPart {
         this.type = type;
     }
 
-    public void cool(){
+
+    @Override
+    public void run() {
         System.out.println(super.getName()+" 냉각합니다");
     }
 

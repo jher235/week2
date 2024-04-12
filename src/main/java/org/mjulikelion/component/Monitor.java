@@ -12,7 +12,8 @@ public class Monitor extends ComponentPart {
         this.size = size;
     }
 
-    public void display(){
+    @Override
+    public void run() {
         System.out.println(super.getName()+" 화면을 출력합니다.");
     }
 

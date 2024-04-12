@@ -15,11 +15,10 @@ public class Cpu extends ComponentPart {
 
     }
 
-
-
-    public void processInstruction(){
-         System.out.println(super.getName()+" 명령어를 처리합니다.");
-    };
+    @Override
+    public void run() {
+        System.out.println(super.getName()+" 명령어를 처리합니다.");
+    }
 
     @Override
     public void on() {

@@ -11,7 +11,8 @@ public class PowerSupplier extends ComponentPart {
         this.power = power;
     }
 
-    public void supplyPower(){
+    @Override
+    public void run() {
         System.out.println(super.getName()+" 전원을 공급합니다.");
     }
 

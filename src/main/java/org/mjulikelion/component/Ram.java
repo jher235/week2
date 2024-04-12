@@ -10,7 +10,9 @@ public class Ram extends ComponentPart {
         super(name, price, company);
         this.capacity = capacity;
     }
-    public void readData(){
+
+    @Override
+    public void run() {
         System.out.println(super.getName()+ " 데이터를 읽습니다.");
     }
 
